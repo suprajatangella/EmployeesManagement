@@ -1,0 +1,67 @@
+﻿@model EmployeesManagement.Models.SystemProfile
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<hr />
+<form asp-action="Create" asp-controller="SystemProfiles">
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Create New Profile</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Name" class="control-label"></label>
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="ProfileId" class="control-label"></label>
+                                <select asp-for="ProfileId" class="form-control" asp-items="ViewBag.ProfileId">
+                                    <option value="">Select System Profile</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Order" class="control-label"></label>
+                                <input asp-for="Order" class="form-control" />
+                                <span asp-validation-for="Order" class="text-danger"></span>
+                            </div>
+                        </div>
+                        
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="row">
+
+<div class="col-md-12">
+        <div class="card-footer">
+            <div class="clearfix">
+                <a asp-action="Index" class="btn btn-danger push-left">Back to List</a>
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+
+</div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
