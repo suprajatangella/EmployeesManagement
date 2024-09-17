@@ -1,0 +1,119 @@
+﻿@model IEnumerable<EmployeesManagement.Models.ApprovalEntry>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<p>
+    <a asp-action="Create" class="btn btn-primary"><i class="fa fa-plus"></i>Create Approval Entries</a>
+</p>
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Approval Entries</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.RecordId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DocumentType.Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SequenceNo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Approver.FullName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Status)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DateSentForApproval)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LastModifiedOn)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LastModifiedBy.FullName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LastModifiedById)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CreatedById)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CreatedOn)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ModifiedById)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ModifiedOn)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Comments)
+                    </th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RecordId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DocumentType.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SequenceNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Approver.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateSentForApproval)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastModifiedOn)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastModifiedBy.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastModifiedById)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreatedById)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreatedOn)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ModifiedById)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ModifiedOn)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Comments)
+                        </td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-warning"><i class="fa fa-eye"></i> View</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

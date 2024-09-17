@@ -17,7 +17,7 @@ namespace EmployeesManagement.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.7")
+                .HasAnnotation("ProductVersion", "8.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -119,6 +119,113 @@ namespace EmployeesManagement.Data.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("EmployeesManagement.Models.ApprovalEntry", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ApproverId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Comments")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreatedById")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateSentForApproval")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DocumentTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LastModifiedById")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("LastModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedById")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("RecordId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SequenceNo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("statusId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApproverId");
+
+                    b.HasIndex("DocumentTypeId");
+
+                    b.HasIndex("LastModifiedById");
+
+                    b.HasIndex("statusId");
+
+                    b.ToTable("approvalEntries");
+                });
+
+            modelBuilder.Entity("EmployeesManagement.Models.ApprovalsUserMatrix", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CreatedById")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DocumentTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ModifiedById")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("WorkFlowUserGroupId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DocumentTypeId");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("WorkFlowUserGroupId");
+
+                    b.ToTable("ApprovalsUserMatrixs");
+                });
+
             modelBuilder.Entity("EmployeesManagement.Models.Audit", b =>
                 {
                     b.Property<int>("Id")
@@ -208,6 +315,76 @@ namespace EmployeesManagement.Data.Migrations
                     b.HasIndex("CountryId");
 
                     b.ToTable("Cities");
+                });
+
+            modelBuilder.Entity("EmployeesManagement.Models.CompanyInformation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ContactPerson")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CountryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatedById")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("KRAPIN")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Logo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ModifiedById")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NHIFNO")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NSSFNO")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PhoneNo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PostalCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CityId");
+
+                    b.HasIndex("CountryId");
+
+                    b.ToTable("CompanyInformation");
                 });
 
             modelBuilder.Entity("EmployeesManagement.Models.Country", b =>
@@ -321,9 +498,23 @@ namespace EmployeesManagement.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Country")
-                        .IsRequired()
+                    b.Property<decimal?>("AllocatedLeaveDays")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("BankAccountNo")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("BankId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CauseOfInactivityId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CompanyEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("CountryId")
+                        .HasColumnType("int");
 
                     b.Property<string>("CreatedById")
                         .HasColumnType("nvarchar(max)");
@@ -334,13 +525,17 @@ namespace EmployeesManagement.Data.Migrations
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Department")
-                        .IsRequired()
+                    b.Property<int?>("DepartmentId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("DesignationId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DisabilityCertificate")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Designation")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("DisabilityId")
+                        .HasColumnType("int");
 
                     b.Property<string>("EmailAddress")
                         .IsRequired()
@@ -350,13 +545,34 @@ namespace EmployeesManagement.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime?>("EmployementDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("EmploymentTermsId")
+                        .HasColumnType("int");
+
                     b.Property<string>("FirstName")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("GenderId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("IBAN")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("InactiveDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("KRAPIN")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("LeaveOutStandingBalance")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("MiddleName")
                         .IsRequired()
@@ -368,12 +584,154 @@ namespace EmployeesManagement.Data.Migrations
                     b.Property<DateTime>("ModifiedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("NHIF")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NSSFNO")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PassportNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("PaysTax")
+                        .HasColumnType("bit");
+
                     b.Property<int>("PhoneNumber")
                         .HasColumnType("int");
 
+                    b.Property<string>("Photo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ReasonforterminationId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SWIFTCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("StatusId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("TerminationDate")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("BankId");
+
+                    b.HasIndex("CauseOfInactivityId");
+
+                    b.HasIndex("CountryId");
+
+                    b.HasIndex("DepartmentId");
+
+                    b.HasIndex("DesignationId");
+
+                    b.HasIndex("DisabilityId");
+
+                    b.HasIndex("EmploymentTermsId");
+
+                    b.HasIndex("GenderId");
+
+                    b.HasIndex("ReasonforterminationId");
+
+                    b.HasIndex("StatusId");
+
                     b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("EmployeesManagement.Models.Holiday", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CreatedById")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedById")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Holidays");
+                });
+
+            modelBuilder.Entity("EmployeesManagement.Models.LeaveAdjustmentEntry", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AdjustmentDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("AdjustmentTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatedById")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LeaveAdjustmentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("LeaveEndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("LeavePeriodId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("LeaveStartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedById")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("NoOfDays")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdjustmentTypeId");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("LeavePeriodId");
+
+                    b.ToTable("LeaveAdjustmentEntries");
                 });
 
             modelBuilder.Entity("EmployeesManagement.Models.LeaveApplication", b =>
@@ -443,6 +801,51 @@ namespace EmployeesManagement.Data.Migrations
                     b.HasIndex("StatusId");
 
                     b.ToTable("LeaveApplications");
+                });
+
+            modelBuilder.Entity("EmployeesManagement.Models.LeavePeriod", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("Closed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("CreatedById")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("Locked")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ModifiedById")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("leavePeriods");
                 });
 
             modelBuilder.Entity("EmployeesManagement.Models.LeaveType", b =>
@@ -613,6 +1016,70 @@ namespace EmployeesManagement.Data.Migrations
                     b.ToTable("SystemProfiles");
                 });
 
+            modelBuilder.Entity("EmployeesManagement.Models.WorkFlowUserGroup", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("DepartmentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("DocumentTypeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DepartmentId");
+
+                    b.HasIndex("DocumentTypeId");
+
+                    b.ToTable("WorkFlowUserGroups");
+                });
+
+            modelBuilder.Entity("EmployeesManagement.Models.WorkFlowUserGroupMember", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ApproverId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("SenderId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("SequenceNo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WorkFlowUsergroupId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApproverId");
+
+                    b.HasIndex("SenderId");
+
+                    b.HasIndex("WorkFlowUsergroupId");
+
+                    b.ToTable("WorkFlowUserGroupMembers");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -760,6 +1227,68 @@ namespace EmployeesManagement.Data.Migrations
                     b.Navigation("Role");
                 });
 
+            modelBuilder.Entity("EmployeesManagement.Models.ApprovalEntry", b =>
+                {
+                    b.HasOne("EmployeesManagement.Models.ApplicationUser", "Approver")
+                        .WithMany()
+                        .HasForeignKey("ApproverId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("EmployeesManagement.Models.SystemCodeDetail", "DocumentType")
+                        .WithMany()
+                        .HasForeignKey("DocumentTypeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("EmployeesManagement.Models.ApplicationUser", "LastModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("LastModifiedById")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("EmployeesManagement.Models.SystemCodeDetail", "Status")
+                        .WithMany()
+                        .HasForeignKey("statusId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Approver");
+
+                    b.Navigation("DocumentType");
+
+                    b.Navigation("LastModifiedBy");
+
+                    b.Navigation("Status");
+                });
+
+            modelBuilder.Entity("EmployeesManagement.Models.ApprovalsUserMatrix", b =>
+                {
+                    b.HasOne("EmployeesManagement.Models.SystemCodeDetail", "DocumentType")
+                        .WithMany()
+                        .HasForeignKey("DocumentTypeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("EmployeesManagement.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("EmployeesManagement.Models.WorkFlowUserGroup", "WorkFlowUserGroup")
+                        .WithMany()
+                        .HasForeignKey("WorkFlowUserGroupId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("DocumentType");
+
+                    b.Navigation("User");
+
+                    b.Navigation("WorkFlowUserGroup");
+                });
+
             modelBuilder.Entity("EmployeesManagement.Models.City", b =>
                 {
                     b.HasOne("EmployeesManagement.Models.Country", "Country")
@@ -769,6 +1298,124 @@ namespace EmployeesManagement.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Country");
+                });
+
+            modelBuilder.Entity("EmployeesManagement.Models.CompanyInformation", b =>
+                {
+                    b.HasOne("EmployeesManagement.Models.City", "City")
+                        .WithMany()
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("EmployeesManagement.Models.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("City");
+
+                    b.Navigation("Country");
+                });
+
+            modelBuilder.Entity("EmployeesManagement.Models.Employee", b =>
+                {
+                    b.HasOne("EmployeesManagement.Models.Bank", "Bank")
+                        .WithMany()
+                        .HasForeignKey("BankId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("EmployeesManagement.Models.SystemCodeDetail", "CauseOfInactivity")
+                        .WithMany()
+                        .HasForeignKey("CauseOfInactivityId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("EmployeesManagement.Models.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("EmployeesManagement.Models.Department", "Department")
+                        .WithMany()
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("EmployeesManagement.Models.Designation", "Designation")
+                        .WithMany()
+                        .HasForeignKey("DesignationId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("EmployeesManagement.Models.SystemCodeDetail", "Disability")
+                        .WithMany()
+                        .HasForeignKey("DisabilityId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("EmployeesManagement.Models.SystemCodeDetail", "EmploymentTerms")
+                        .WithMany()
+                        .HasForeignKey("EmploymentTermsId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("EmployeesManagement.Models.SystemCodeDetail", "Gender")
+                        .WithMany()
+                        .HasForeignKey("GenderId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("EmployeesManagement.Models.SystemCodeDetail", "Reasonfortermination")
+                        .WithMany()
+                        .HasForeignKey("ReasonforterminationId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("EmployeesManagement.Models.SystemCodeDetail", "Status")
+                        .WithMany()
+                        .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Bank");
+
+                    b.Navigation("CauseOfInactivity");
+
+                    b.Navigation("Country");
+
+                    b.Navigation("Department");
+
+                    b.Navigation("Designation");
+
+                    b.Navigation("Disability");
+
+                    b.Navigation("EmploymentTerms");
+
+                    b.Navigation("Gender");
+
+                    b.Navigation("Reasonfortermination");
+
+                    b.Navigation("Status");
+                });
+
+            modelBuilder.Entity("EmployeesManagement.Models.LeaveAdjustmentEntry", b =>
+                {
+                    b.HasOne("EmployeesManagement.Models.SystemCodeDetail", "AdjustmentType")
+                        .WithMany()
+                        .HasForeignKey("AdjustmentTypeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("EmployeesManagement.Models.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("EmployeesManagement.Models.LeavePeriod", "LeavePeriod")
+                        .WithMany()
+                        .HasForeignKey("LeavePeriodId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("AdjustmentType");
+
+                    b.Navigation("Employee");
+
+                    b.Navigation("LeavePeriod");
                 });
 
             modelBuilder.Entity("EmployeesManagement.Models.LeaveApplication", b =>
@@ -844,6 +1491,50 @@ namespace EmployeesManagement.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Profile");
+                });
+
+            modelBuilder.Entity("EmployeesManagement.Models.WorkFlowUserGroup", b =>
+                {
+                    b.HasOne("EmployeesManagement.Models.Department", "Department")
+                        .WithMany()
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("EmployeesManagement.Models.SystemCodeDetail", "DocumentType")
+                        .WithMany()
+                        .HasForeignKey("DocumentTypeId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Department");
+
+                    b.Navigation("DocumentType");
+                });
+
+            modelBuilder.Entity("EmployeesManagement.Models.WorkFlowUserGroupMember", b =>
+                {
+                    b.HasOne("EmployeesManagement.Models.ApplicationUser", "Approver")
+                        .WithMany()
+                        .HasForeignKey("ApproverId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("EmployeesManagement.Models.ApplicationUser", "Sender")
+                        .WithMany()
+                        .HasForeignKey("SenderId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("EmployeesManagement.Models.WorkFlowUserGroup", "WorkFlowUserGroup")
+                        .WithMany()
+                        .HasForeignKey("WorkFlowUsergroupId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Approver");
+
+                    b.Navigation("Sender");
+
+                    b.Navigation("WorkFlowUserGroup");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

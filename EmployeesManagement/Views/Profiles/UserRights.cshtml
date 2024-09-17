@@ -10,7 +10,7 @@
     <!-- /.card-header -->
     <div class="card-body">
         <div class="table-responsive">
-            <form asp-action="UserGroupRights" method="post">
+            <form asp-action="UserRights" asp-controller="Profiles" method="post">
                 <input type="hidden" name="id" value="@Model.RoleId" />
                 <table id="example1" class="table table-bordered table-striped table-hover table-fixed-header">
                     <thead class="header" style="margin: 0px auto; width: 1280px;">
@@ -46,7 +46,6 @@
                                                     <th></th>
                                                     <th>
                                                         <input type="hidden" name="RolesProfilesIds[]" value="@submodule.Id" />
-                                                        @submodule.Name
                                                     </th>
                                                 </tr>
                                                     @foreach (var actions in submodule.Children)
@@ -56,9 +55,18 @@
                                                         <th></th>
                                                         <td>@actions.Name</td>
                                                         <td>
-                                                            <label class="">
-                                                                <input type="checkbox" name="Ids[]" value="@actions.Id" />
-                                                            </label>
+                                                            @if(Model.RolesRightsIds.Contains(actions.Id))
+                                                            {
+                                                                <label class="">
+                                                                    <input type="checkbox" name="Ids[]" value="@actions.Id" checked="checked" />
+                                                                </label>
+                                                            }
+                                                            else
+                                                            {
+                                                                <label class="">
+                                                                    <input type="checkbox" name="Ids[]" value="@actions.Id"  />
+                                                                </label>
+                                                            }
                                                         </td>
                                                         </tr>
                                                     }

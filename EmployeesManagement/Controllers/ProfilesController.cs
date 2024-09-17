@@ -54,15 +54,19 @@ namespace EmployeesManagement.Controllers
                 .OrderBy(x => x.Order)
                 .ToListAsync();
 
-            tasks.RolesProfilesIds= await _context.RoleProfiles.Where(x=>x.RoleId==id).Select(r=> r.TaskId).ToListAsync();
+            tasks.RolesRightsIds= await _context.RoleProfiles.Where(x=>x.RoleId==id).Select(r=> r.TaskId).ToListAsync();
 
             return View(tasks);
         }
 
         [HttpPost]
-        public async Task<ActionResult> UserGroupRights(string id,ProfileViewModel vm)
+        public async Task<ActionResult> UserRights(string id,ProfileViewModel vm)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var allrights = await _context.RoleProfiles.Where(x=>x.RoleId==id).ToListAsync();
+            _context.RoleProfiles.RemoveRange(allrights);
+            await _context.SaveChangesAsync(userId);
+
             foreach (var taskId in vm.Ids)
             { 
                 var role = new RoleProfile

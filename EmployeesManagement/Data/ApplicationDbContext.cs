@@ -41,6 +41,21 @@ namespace EmployeesManagement.Data
         public DbSet<Audit> AuditLogs { get; set; }
         public DbSet<RoleProfile> RoleProfiles { get; set; }
 
+        public DbSet<Holiday> Holidays { get; set; }
+
+        public DbSet<LeaveAdjustmentEntry> LeaveAdjustmentEntries { get; set; }
+        public DbSet<LeavePeriod> leavePeriods { get; set; }
+
+        public DbSet<CompanyInformation> CompanyInformation { get; set; }
+
+        public DbSet<ApprovalEntry> approvalEntries { get; set; }
+
+        public DbSet<WorkFlowUserGroup> WorkFlowUserGroups { get; set; }
+
+        public DbSet<WorkFlowUserGroupMember> WorkFlowUserGroupMembers { get; set; }
+
+        public DbSet<ApprovalsUserMatrix> ApprovalsUserMatrixs { get; set; }
+
         public virtual async Task<int> SaveChangesAsync(string userId=null)
         {
             OnBeforesavingChanges(userId);

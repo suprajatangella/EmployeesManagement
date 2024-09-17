@@ -61,7 +61,7 @@ namespace EmployeesManagement.Controllers
         public async Task<IActionResult> Create(SystemProfile systemProfile)
         {
             var UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            systemProfile.CreatedById = "Test Code";
+            systemProfile.CreatedById = UserId;
                 systemProfile.CreatedOn = DateTime.Now;
                 _context.Add(systemProfile);
                 await _context.SaveChangesAsync(UserId);
@@ -99,12 +99,15 @@ namespace EmployeesManagement.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            //if (ModelState.IsValid)
             {
                 try
                 {
+                    var UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                    systemProfile.ModifiedOn = DateTime.Now;
+                    systemProfile.ModifiedById = UserId;
                     _context.Update(systemProfile);
-                    await _context.SaveChangesAsync();
+                    await _context.SaveChangesAsync(UserId);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -117,10 +120,11 @@ namespace EmployeesManagement.Controllers
                         throw;
                     }
                 }
+                ViewData["ProfileId"] = new SelectList(_context.SystemProfiles, "Id", "Name", systemProfile.ProfileId);
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProfileId"] = new SelectList(_context.SystemProfiles, "Id", "Name", systemProfile.ProfileId);
-            return View(systemProfile);
+            
+           // return View(systemProfile);
         }
 
         // GET: SystemProfiles/Delete/5

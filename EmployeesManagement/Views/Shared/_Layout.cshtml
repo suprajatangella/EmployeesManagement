@@ -176,7 +176,7 @@
         </nav>
         <!-- /.navbar -->
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4"> 
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="index3.html" class="brand-link">
                 <img src="~/AdminLTE/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -211,161 +211,241 @@
 
                         </li>
                         <li class="nav-item">
-                            <a asp-controller="Employees" asp-action="Index" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    Employee
-                                </p>
-                            </a>
-                        </li>
-                        @*  first section starts *@
-                        <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>
-                                    Leave Application
+                                    HR & PayRoll
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
-                           
+
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a asp-action="Index" asp-controller="LeaveTypes" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Leave Types</p>
+                                        <p>Employees List</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a asp-action="Index" asp-controller="LeaveApplications" class="nav-link">
+                                    <a asp-action="Index" asp-controller="Holidays" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Leave Applications</p>
-                                    </a>
-                                    <a asp-action="ApprovedLeaveApplications" asp-controller="LeaveApplications" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Approved Leave Applications</p>
-                                    </a>
-                                    <a asp-action="RejectedLeaveApplications" asp-controller="LeaveApplications" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Rejected Leave Applications</p>
+                                        <p>Holidays</p>
                                     </a>
                                 </li>
-                            </ul>
+                                <li class="nav-item">
+                                    <a asp-action="Index" asp-controller="LeaveAdjustmentEntries" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Leave Adjustments</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-action="Index" asp-controller="LeaveBalances" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Leave Balances</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-action="Index" asp-controller="LeavePeriods" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Leave Periods</p>
+                                    </a>
+                                </li>
+                                <ul>
                         </li>
-                        @* first section ends *@
+                    </ul>
+                    <li class="nav-item">
+                        <a asp-controller="Employees" asp-action="Index" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Employee
+                            </p>
+                        </a>
+                    </li>
+                    @*  first section starts *@
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-table"></i>
+                            <p>
+                                Leave Application
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
 
-                        @*  new section starts *@
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-table"></i>
-                                <p>
-                                    System Security
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a asp-controller="Users" asp-action="Index" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>system Users</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a asp-controller="Roles" asp-action="Index" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>system Roles</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a asp-controller="SystemProfiles" asp-action="Index" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>System Profiles</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a asp-controller="Audits" asp-action="Index" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>System Audits</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a asp-controller="Profiles" asp-action="Index" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>User Roles</p>
-                                    </a>
-                                </li>
-                                
-                            </ul>
-                        </li>
-                        @* new section ends *@
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a asp-action="Index" asp-controller="LeaveTypes" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Leave Types</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-action="Index" asp-controller="LeaveApplications" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Leave Applications</p>
+                                </a>
+                                <a asp-action="ApprovedLeaveApplications" asp-controller="LeaveApplications" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Approved Leave Applications</p>
+                                </a>
+                                <a asp-action="RejectedLeaveApplications" asp-controller="LeaveApplications" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Rejected Leave Applications</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    @* first section ends *@
 
-                        @*  second section starts *@
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-table"></i>
-                                <p>
-                                    System Administration
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a asp-controller="Users" asp-action="Index" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>system Users</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a asp-controller="Roles" asp-action="Index" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>system Roles</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a asp-controller="Designations" asp-action="Index" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Designation</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a asp-controller="Departments" asp-action="Index" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Departments</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a asp-controller="Banks" asp-action="Index" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Banks</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a asp-controller="Countries" asp-action="Index" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Countries</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a asp-controller="Cities" asp-action="Index" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Towns/Cities</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a asp-controller="SystemCodes" asp-action="Index" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>System Code</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a asp-controller="SystemCodeDetails" asp-action="Index" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>System Code Details</p>
-                                    </a>
-                                </li>
+                    @*  new section starts *@
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-table"></i>
+                            <p>
+                                System Security
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a asp-controller="Users" asp-action="Index" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>system Users</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Roles" asp-action="Index" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>system Roles</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="SystemProfiles" asp-action="Index" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>System Profiles</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Audits" asp-action="Index" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>System Audits</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Profiles" asp-action="Index" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>User Roles</p>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    @* new section ends *@
+
+                    @*  second section starts *@
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-table"></i>
+                            <p>
+                                System Administration
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a asp-controller="ApprovalEntries" asp-action="Index" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Approval Entries</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="WorkFlowUserGroups" asp-action="Index" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Work Flow User Groups</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="ApprovalsUserMatrices" asp-action="Index" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Approval User Matrix</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Users" asp-action="Index" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>system Users</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Roles" asp-action="Index" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>system Roles</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Designations" asp-action="Index" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Designation</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Departments" asp-action="Index" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Departments</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Banks" asp-action="Index" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Banks</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Countries" asp-action="Index" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Countries</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Cities" asp-action="Index" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Towns/Cities</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="SystemCodes" asp-action="Index" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>System Code</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="SystemCodeDetails" asp-action="Index" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>System Code Details</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    @* second section ends *@
+                    @* 3rd section starts*@
+                     <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-table"></i>
+                            <p>
+                                System settings
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a asp-controller="CompanyInformations" asp-action="Index" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Company Information</p>
+                                </a>
+                            </li>
                             </ul>
-                        </li>
-                        @* second section ends *@
-                        
+                            </li>
+                    @* 3rd section ends*@
+
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
